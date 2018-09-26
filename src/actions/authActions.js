@@ -22,6 +22,12 @@ export function loginFailed(error){
   }
 }
 
+export function stopLoading(){
+  return{
+    type:types.STOP_LOADING
+  }
+}
+
 export function login(userData){
   return dispatch => {
     dispatch(isLoading(true));

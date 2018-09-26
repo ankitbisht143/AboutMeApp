@@ -1,29 +1,28 @@
-import React,{PureComponent} from 'react'
-import {Alert} from 'react-native'
+import React,{PureComponent} from 'react';
+import {Alert, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 
 import Login from './login';
-import * as actions from '../../actions/authActions'
+import * as actions from '../../actions/authActions';
+import {IS_LOGGED_IN} from '../../constants/asyncStorageKeys';
 
 class LoginContainer extends PureComponent{
   constructor(props){
     super(props);
 
     this.state={
-      email:'ankit2.bisht@gmail.com',
-      password:'pass1234'
+      email:'',
+      password:'',
+      loading:false
     }
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.error){
-    }
-    if(nextProps.isLoggedIn){
-      this.props.navigation.navigate('profile',{
-        fullName:nextProps.userData.user.firstName+' '+nextProps.userData.user.lastName
-      })
-    }
-
+  componentWillMount(){
+    AsyncStorage.getItem(IS_LOGGED_IN).then((value) => {
+      if(value){
+        this.props.navigation.navigate('profile')
+      }
+    })
   }
 
   onPressSignup = () => {
@@ -45,12 +44,37 @@ class LoginContainer extends PureComponent{
   }
 
   onPressLogin = () => {
-    this.props.login(this.state.email,this.state.password)
+    this.setState({
+      loading:true
+    })
+    this.props.login(this.state.email,this.state.password).then(() => {
+      if(this.props.error){
+        Alert.alert(
+          '',
+          this.props.error,
+          [{
+            text:'OK',onPress:() => {
+              this.setState({
+                loading:false
+              })
+            }
+          }]
+        )
+      }
+      else{
+        this.setState({
+          loading:false
+        }, () => {
+          AsyncStorage.setItem(IS_LOGGED_IN,"1")
+          this.props.navigation.navigate('profile')
+        })
+      }
+    })
   }
   render(){
     return(
       <Login onPressSignup={this.onPressSignup} onChangeText={(value,input) => this.onChangeText(value,input)}
-        onPressLogin={this.onPressLogin}/>
+        onPressLogin={this.onPressLogin} loading={this.state.loading}/>
     )
   }
 }
@@ -63,7 +87,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  login:(email,password) => dispatch(actions.login({email,password}))
+  login:(email,password) => dispatch(actions.login({email,password})),
+  stopLoading:() => dispatch(actions.stopLoading())
 })
 
 

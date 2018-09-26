@@ -14,7 +14,7 @@ const Profile = props => {
       <Content>
         <Content style={profileContainer}>
           <Image source={PROFILE} style={profile}/>
-          <Text style={[centerAlignText,{fontSize:20}]}>{capitalizeFirstLetter(props.fullName)}</Text>
+          <Text style={[centerAlignText,{fontSize:20}]}></Text>
           <Text style={[centerAlignText,{marginTop:5,color:'gray'}]}>Employee at {props.companyName}</Text>
 
         </Content>

@@ -20,7 +20,8 @@ export default function auth(state=INITIAL_STATE,action){
         ...state,
         isLoading:false,
         isLoggedIn:true,
-        userData:action.userData
+        userData:action.userData,
+        error:undefined
       }
       break;
     case types.LOGIN_FAILED:
@@ -29,6 +30,12 @@ export default function auth(state=INITIAL_STATE,action){
         isLoading:false,
         isLoggedIn:false,
         error:action.error
+      }
+      break;
+    case types.STOP_LOADING:
+      return{
+        ...state,
+        isLoading:false
       }
       break;
     default:
