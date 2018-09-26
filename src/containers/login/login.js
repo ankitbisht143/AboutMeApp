@@ -17,7 +17,7 @@ const Login = props => {
         <Form style={form}>
           <TextField autoCapitalize='none' keyboardType='email-address' placeholder="Email address" icon="envelope"
             onChangeText={(email) => props.onChangeText(email,'email')}/>
-          <TextField secureTextEntry={true} placeholder="Password" icon="key"
+          <TextField autoCapitalize='none' secureTextEntry={true} placeholder="Password" icon="key"
             onChangeText={(password) => props.onChangeText(password,'password')}/>
         </Form>
         <NativeButton title="LOGIN" style={button} buttonTextStyle={buttonTextStyle} onPress={props.onPressLogin}/>

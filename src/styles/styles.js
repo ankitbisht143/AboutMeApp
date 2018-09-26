@@ -36,6 +36,9 @@ export const styles=StyleSheet.create({
     width: 150,
     justifyContent: 'center',
     backgroundColor: 'transparent',
+    shadowOffset: { height: 0, width: 0 },
+    shadowOpacity: 0,
+    elevation:0
   },
   transButtonTxtStyle: {
     color: 'black',

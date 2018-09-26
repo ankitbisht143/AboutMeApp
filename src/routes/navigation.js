@@ -1,7 +1,5 @@
 import {StackNavigator, createStackNavigator} from 'react-navigation';
 import * as navigationOptions from './navigationOptions'
-import * as font from '../constants/fontFamily'
-import {SCREEN_WIDTH} from '../constants/dimensions'
 
 import LoginScene from '../scenes/loginScene';
 import SignupScene from '../scenes/signupScene';
@@ -17,8 +15,7 @@ const MainNavigator = createStackNavigator({
     headerStyle: {
         backgroundColor:'white'
     },
-  	headerTintColor:'black',
-  	headerTitleStyle:{ fontSize:16, fontFamily:font.RALEWAY_BOLD, width:SCREEN_WIDTH}
+  	headerTintColor:'black'
   }
 })
 
