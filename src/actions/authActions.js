@@ -1,36 +1,22 @@
 import * as types from './types';
 import {BASE_URL} from '../constants/url';
 
-export function isLoading(bool){
+export function authSuccess(userData){
   return{
-    type:types.IS_LOADING,
-    isLoading:bool
-  }
-}
-
-export function loginSuccess(userData){
-  return{
-    type:types.LOGIN_SUCCESS,
+    type:types.AUTH_SUCCESS,
     userData
   }
 }
 
-export function loginFailed(error){
+export function authFailed(error){
   return{
-    type:types.LOGIN_FAILED,
+    type:types.AUTH_FAILED,
     error
-  }
-}
-
-export function stopLoading(){
-  return{
-    type:types.STOP_LOADING
   }
 }
 
 export function login(userData){
   return dispatch => {
-    dispatch(isLoading(true));
     return fetch(`${BASE_URL}/auth/login`,{
       method:'POST',
       headers:{
@@ -43,21 +29,51 @@ export function login(userData){
     })
     .then((response) => {
       if(response.status < 300){
-        dispatch(isLoading(false));
         response.json().then((responseJSON) => {
-          dispatch(loginSuccess(responseJSON))
+          dispatch(authSuccess(responseJSON))
         })
       }
       else{
-        dispatch(isLoading(false));
         response.json().then((responseJSON) => {
-          dispatch(loginFailed(responseJSON.message))
+          dispatch(authFailed(responseJSON.message))
         })
       }
     })
     .catch((error) => {
-      dispatch(isLoading(false))
-      dispatch(loginFailed(error))
+      dispatch(authFailed(error))
+    })
+  }
+}
+
+export function signup(userData){
+  return dispatch => {
+    return fetch(`${BASE_URL}/auth/register`,{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        "email":userData.email,
+	      "password":userData.password,
+        "username":userData.username,
+	      "companyName":userData.companyName,
+	      "expertise":userData.expertise
+      })
+    })
+    .then((response) => {
+      if(response.status < 300){
+        response.json().then((responseJSON) => {
+          dispatch(authSuccess(responseJSON))
+        })
+      }
+      else{
+        response.json().then((responseJSON) => {
+          dispatch(authFailed(responseJSON.message))
+        })
+      }
+    })
+    .catch((error) => {
+      dispatch(authFailed(error))
     })
   }
 }

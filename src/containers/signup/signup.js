@@ -2,22 +2,29 @@ import React from 'react';
 import {View} from 'react-native';
 import { Container, Content, Form, Text} from 'native-base';
 import MultipleTags from 'react-native-multiple-tags';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import TextField from '../../components/textField';
 import NativeButton from '../../components/button';
 import {styles} from '../../styles/styles';
 
 const Signup = props => {
-  const {button, buttonTextStyle, form, multiTags} = styles;
+  const {button, buttonTextStyle, form, multiTags, loading} = styles;
   return(
     <Container>
+      <Spinner visible={props.loading} textStyle={loading}/>
       <Content>
         <Form style={[form,{marginTop:0}]}>
-          <TextField autoCapitalize='none' placeholder="Username" icon="user"/>
-          <TextField autoCapitalize='none' keyboardType="email-address" placeholder="Email address" icon="envelope"/>
-          <TextField placeholder="Company Name" icon="building"/>
-          <TextField secureTextEntry={true} placeholder="Password" icon="key"/>
-          <TextField secureTextEntry={true} placeholder="Confirm Password" icon="key"/>
+          <TextField placeholder="Username" icon="user"
+            onChangeText={(username) => props.onChangeText(username,'username')}/>
+          <TextField autoCapitalize='none' keyboardType="email-address" placeholder="Email address" icon="envelope"
+            onChangeText={(email) => props.onChangeText(email,'email')}/>
+          <TextField placeholder="Company Name" icon="building"
+            onChangeText={(companyName) => props.onChangeText(companyName,'companyName')}/>
+          <TextField secureTextEntry={true} placeholder="Password" icon="key"
+            onChangeText={(password) => props.onChangeText(password,'password')}/>
+          <TextField secureTextEntry={true} placeholder="Confirm Password" icon="key"
+            onChangeText={(confirmPassword) => props.onChangeText(confirmPassword,'confirmPassword')}/>
           <View style={multiTags}>
             <MultipleTags tags={props.expertiseTags} search onChangeItem={(expertise) => props.onChangeExpertise(expertise)}
               title="Expertise"/>

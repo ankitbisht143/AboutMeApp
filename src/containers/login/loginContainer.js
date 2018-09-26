@@ -29,7 +29,7 @@ class LoginContainer extends PureComponent{
     this.props.navigation.navigate('signup');
   }
 
-  onChangeText(value,input){
+  onChangeText = (value,input) => {
     switch (input) {
       case "email":
         this.setState({
@@ -48,7 +48,15 @@ class LoginContainer extends PureComponent{
       loading:true
     })
     this.props.login(this.state.email,this.state.password).then(() => {
-      if(this.props.error){
+      if(this.props.isLoggedIn){
+        this.setState({
+          loading:false
+        }, () => {
+          AsyncStorage.setItem(IS_LOGGED_IN,"1")
+          this.props.navigation.navigate('profile')
+        })
+      }
+      else{
         Alert.alert(
           '',
           this.props.error,
@@ -60,14 +68,6 @@ class LoginContainer extends PureComponent{
             }
           }]
         )
-      }
-      else{
-        this.setState({
-          loading:false
-        }, () => {
-          AsyncStorage.setItem(IS_LOGGED_IN,"1")
-          this.props.navigation.navigate('profile')
-        })
       }
     })
   }
@@ -81,14 +81,12 @@ class LoginContainer extends PureComponent{
 
 const mapStateToProps = state => ({
   isLoggedIn:state.auth.isLoggedIn,
-  isLoading:state.auth.isLoading,
   userData:state.auth.userData,
   error:state.auth.error
 })
 
 const mapDispatchToProps = dispatch => ({
-  login:(email,password) => dispatch(actions.login({email,password})),
-  stopLoading:() => dispatch(actions.stopLoading())
+  login:(email,password) => dispatch(actions.login({email,password}))
 })
 
 

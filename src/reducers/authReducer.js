@@ -9,13 +9,7 @@ const INITIAL_STATE={
 
 export default function auth(state=INITIAL_STATE,action){
   switch (action.type){
-    case types.IS_LOADING:
-      return{
-        ...state,
-        isLoading:true
-      }
-      break;
-    case types.LOGIN_SUCCESS:
+    case types.AUTH_SUCCESS:
       return{
         ...state,
         isLoading:false,
@@ -24,18 +18,12 @@ export default function auth(state=INITIAL_STATE,action){
         error:undefined
       }
       break;
-    case types.LOGIN_FAILED:
+    case types.AUTH_FAILED:
       return{
         ...state,
         isLoading:false,
         isLoggedIn:false,
         error:action.error
-      }
-      break;
-    case types.STOP_LOADING:
-      return{
-        ...state,
-        isLoading:false
       }
       break;
     default:
