@@ -16,7 +16,8 @@ export const styles=StyleSheet.create({
     alignSelf:'center',
     marginTop:SCREEN_HEIGHT/16.6,
     width:150,
-    justifyContent:'center'
+    justifyContent:'center',
+    backgroundColor:'black'
   },
   buttonTextStyle:{
     fontFamily:fontFamily.ARGENTCF_BOLD,
@@ -43,6 +44,30 @@ export const styles=StyleSheet.create({
     fontSize:16
   },
   form:{
-    marginTop:SCREEN_WIDTH/12.5
+    marginTop:SCREEN_WIDTH/12.5,
+    marginRight:20
+  },
+  multiTags:{
+    marginTop:15,
+    marginLeft:20,
+    paddingBottom:20
+  },
+  profile:{
+    width:100,
+    height:100,
+    borderRadius:50,
+    alignSelf:"center",
+    marginTop:20
+  },
+  profileContainer:{
+    paddingBottom:20,
+    backgroundColor:color.LIGHT_GRAY
+  },
+  leftAlignText:{
+    marginTop:15,
+    fontSize:16,
+    fontFamily:fontFamily.ARGENTCF_REGULAR,
+    color:'black',
+    marginHorizontal:15,
   }
 })

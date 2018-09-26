@@ -1,3 +1,1 @@
-export const BUTTON_BG="red"
-export const BLUE="#00DBE8"
-export const GRAY="#494949"
+export const LIGHT_GRAY='#F2F7FA'

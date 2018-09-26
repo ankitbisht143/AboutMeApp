@@ -7,7 +7,7 @@ const INITIAL_STATE={
   error:undefined
 }
 
-export default function login(state=INITIAL_STATE,action){
+export default function auth(state=INITIAL_STATE,action){
   switch (action.type){
     case types.IS_LOADING:
       return{
