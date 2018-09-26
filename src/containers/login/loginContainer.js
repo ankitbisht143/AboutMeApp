@@ -1,10 +1,10 @@
-import React,{PureComponent} from 'react';
+import React, {PureComponent} from 'react';
 import {Alert, AsyncStorage} from 'react-native';
 import {connect} from 'react-redux';
 
 import Login from './login';
-import * as actions from '../../actions/authActions';
-import {IS_LOGGED_IN} from '../../constants/asyncStorageKeys';
+import * as actions from '../../actions/auth/authActions';
+import {USER_ID, ACCESS_TOKEN} from '../../constants/asyncStorageKeys';
 
 class LoginContainer extends PureComponent{
   constructor(props){
@@ -18,7 +18,7 @@ class LoginContainer extends PureComponent{
   }
 
   componentWillMount(){
-    AsyncStorage.getItem(IS_LOGGED_IN).then((value) => {
+    AsyncStorage.getItem(USER_ID).then((value) => {
       if(value){
         this.props.navigation.navigate('profile')
       }
@@ -52,7 +52,8 @@ class LoginContainer extends PureComponent{
         this.setState({
           loading:false
         }, () => {
-          AsyncStorage.setItem(IS_LOGGED_IN,"1")
+          AsyncStorage.setItem(USER_ID,this.props.userData.user.id)
+          AsyncStorage.setItem(ACCESS_TOKEN,this.props.userData.token.accessToken)
           this.props.navigation.navigate('profile')
         })
       }

@@ -1,5 +1,5 @@
-import * as types from './types';
-import {BASE_URL} from '../constants/url';
+import * as types from '../types';
+import {BASE_URL} from '../../constants/url';
 
 export function authSuccess(userData){
   return{
@@ -35,7 +35,7 @@ export function login(userData){
       }
       else{
         response.json().then((responseJSON) => {
-          dispatch(authFailed(responseJSON.message))
+          dispatch(authFailed('Incorrect email or password'))
         })
       }
     })
@@ -68,7 +68,7 @@ export function signup(userData){
       }
       else{
         response.json().then((responseJSON) => {
-          dispatch(authFailed(responseJSON.message))
+          dispatch(authFailed('Incorrect email or password'))
         })
       }
     })

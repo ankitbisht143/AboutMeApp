@@ -1,13 +1,12 @@
 import * as types from '../actions/types';
 
-const INITIAL_STATE={
-  isLoggedIn:false,
-  isLoading:false,
-  userData:{},
-  error:undefined
+const INITIAL_STATE = {
+  isLoggedIn: false,
+  userData: {},
+  error: undefined
 }
 
-export default function auth(state=INITIAL_STATE,action){
+export default function auth(state = INITIAL_STATE, action){
   switch (action.type){
     case types.AUTH_SUCCESS:
       return{

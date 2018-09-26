@@ -15,7 +15,7 @@ const Signup = props => {
       <Spinner visible={props.loading} textStyle={loading}/>
       <Content>
         <Form style={[form,{marginTop:0}]}>
-          <TextField placeholder="Username" icon="user"
+          <TextField placeholder="Fullname" icon="user"
             onChangeText={(username) => props.onChangeText(username,'username')}/>
           <TextField autoCapitalize='none' keyboardType="email-address" placeholder="Email address" icon="envelope"
             onChangeText={(email) => props.onChangeText(email,'email')}/>

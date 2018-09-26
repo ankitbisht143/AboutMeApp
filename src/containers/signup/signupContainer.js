@@ -5,8 +5,8 @@ import {connect} from 'react-redux';
 import Signup from './signup';
 import {expertise} from '../../data/expertise';
 import * as utils from '../../utils/utils';
-import * as actions from '../../actions/authActions';
-import {IS_LOGGED_IN} from '../../constants/asyncStorageKeys';
+import * as actions from '../../actions/auth/authActions';
+import {USER_ID, ACCESS_TOKEN} from '../../constants/asyncStorageKeys';
 
 class SignupContainer extends Component{
   constructor(props){
@@ -86,7 +86,8 @@ class SignupContainer extends Component{
         this.setState({
           loading:false
         }, () => {
-          AsyncStorage.setItem(IS_LOGGED_IN,"1")
+          AsyncStorage.setItem(USER_ID,this.props.userData.user.id)
+          AsyncStorage.setItem(ACCESS_TOKEN,this.props.userData.token.accessToken)
           this.props.navigation.navigate('profile')
         })
       }
