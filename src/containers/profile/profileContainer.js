@@ -16,7 +16,7 @@ class ProfileContainer extends Component{
       fullName:'',
       companyName:'',
       expertise:[],
-      loading:true
+      loading:false
     }
   }
 

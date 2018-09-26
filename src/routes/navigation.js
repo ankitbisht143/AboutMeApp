@@ -4,9 +4,11 @@ import * as navigationOptions from './navigationOptions'
 import LoginScene from '../scenes/loginScene';
 import SignupScene from '../scenes/signupScene';
 import ProfileScene from '../scenes/profileScene';
+import SplashScene from '../scenes/splashScene';
 
 const MainNavigator = createStackNavigator({
-  login:{screen:LoginScene,navigationOptions:{header:null,geasturesEnaled:false}},
+  splash:{screen:SplashScene,navigationOptions:{header:null}},
+  login:{screen:LoginScene,navigationOptions:{header:null}},
   signup:{screen:SignupScene,navigationOptions:navigationOptions.signup},
   profile:{screen:ProfileScene,navigationOptions:navigationOptions.profile}
 },{

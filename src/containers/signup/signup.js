@@ -21,9 +21,9 @@ const Signup = props => {
             onChangeText={(email) => props.onChangeText(email,'email')}/>
           <TextField placeholder="Company Name" icon="building"
             onChangeText={(companyName) => props.onChangeText(companyName,'companyName')}/>
-          <TextField secureTextEntry={true} placeholder="Password" icon="key"
+          <TextField secureTextEntry={true} autoCapitalize='none' placeholder="Password" icon="key"
             onChangeText={(password) => props.onChangeText(password,'password')}/>
-          <TextField secureTextEntry={true} placeholder="Confirm Password" icon="key"
+          <TextField secureTextEntry={true} autoCapitalize='none' placeholder="Confirm Password" icon="key"
             onChangeText={(confirmPassword) => props.onChangeText(confirmPassword,'confirmPassword')}/>
           <View style={multiTags}>
             <MultipleTags tags={props.expertiseTags} search onChangeItem={(expertise) => props.onChangeExpertise(expertise)}

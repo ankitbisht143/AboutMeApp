@@ -17,14 +17,6 @@ class LoginContainer extends PureComponent{
     }
   }
 
-  componentWillMount(){
-    AsyncStorage.getItem(USER_ID).then((value) => {
-      if(value){
-        this.props.navigation.navigate('profile')
-      }
-    })
-  }
-
   onPressSignup = () => {
     this.props.navigation.navigate('signup');
   }
