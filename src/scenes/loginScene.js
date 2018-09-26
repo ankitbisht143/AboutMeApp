@@ -1,8 +1,8 @@
 import React from 'react';
 import LoginContainer from '../containers/login/loginContainer';
 
-const LoginScene = props => (
-  <LoginContainer navigation={this.props.navigation}/>
+const LoginScene = (props) => (
+  <LoginContainer navigation={props.navigation}/>
 )
 
-export default LoginScene
+export default LoginScene;
